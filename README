@@ -1,0 +1,13 @@
+# Using Vagrant (CentOS/7) to test Ansible
+
+# Use -become to get sudo root access
+ansible testserver -become -a "tail /var/log/messages"
+
+# Install epel mirror
+ansible testserver -become -m yum -a name=epel-release
+
+# Install nginx
+ansible testserver -become -m yum -a name=nginx
+
+# Restart nginx
+ansible testserver -become -m yum -a name=nginx
