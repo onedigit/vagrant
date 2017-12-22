@@ -1,5 +1,12 @@
 # Using Vagrant (CentOS/7) to test Ansible
+# ===============================================================================
 
+# ssh to the local vagrant instance
+# ---------------------------------
+ssh vagrant@127.0.0.1 -p 2222 -i .vagrant/machines/default/virtualbox/private_key
+
+# Some basic Ansible commands
+# ---------------------------
 # Use -become to get sudo root access
 ansible testserver -become -a "tail /var/log/messages"
 
