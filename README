@@ -17,6 +17,11 @@ ansible testserver -become -a "tail /var/log/messages"
 ansible testserver -become -m yum -a name=epel-release
 
 # Install nginx
+#
+# Generating a self-signed cert and key:
+#
+# openssl req -nodes -x509 -days 3650 -newkey rsa:2048 -subj /CN=localhost -keyout files/nginx.key -out files/nginx.crt
+#
 ansible testserver -become -m yum -a name=nginx
 
 Note the on CentOS (and other RedHat derivatives), we need to do the following steps manually:
