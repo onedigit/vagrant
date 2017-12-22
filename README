@@ -1,8 +1,11 @@
 # Using Vagrant (CentOS/7) to test Ansible
 # ===============================================================================
 
-# ssh to the local vagrant instance
-# ---------------------------------
+# Starting vagrant and ssh to the local vagrant instance
+# ------------------------------------------------------
+vagrant up
+vagrant ssh
+vagrant ssh-config
 ssh vagrant@127.0.0.1 -p 2222 -i .vagrant/machines/default/virtualbox/private_key
 
 # Some basic Ansible commands
@@ -15,6 +18,11 @@ ansible testserver -become -m yum -a name=epel-release
 
 # Install nginx
 ansible testserver -become -m yum -a name=nginx
+
+Note the on CentOS (and other RedHat derivatives), we need to do the following steps manually:
+Create /etc/nginx/sites-available and /etc/nginx/sites-enabled and 
+then edit the http block inside /etc/nginx/nginx.conf and add this line
+include /etc/nginx/sites-enabled/*;
 
 # Restart nginx
 ansible testserver -become -m yum -a name=nginx
